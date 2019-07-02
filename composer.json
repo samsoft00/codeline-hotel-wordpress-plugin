@@ -1,0 +1,17 @@
+{
+    "name": "codeline/codeline-plugin",
+    "description": "Plugin to manage codeline hotel management system",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Oyewole S. Abayomi",
+            "email": "oyewoleabayomi@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Samsoft\\": "./samsoft"} 
+    }
+}

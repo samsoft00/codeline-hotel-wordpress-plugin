@@ -4,7 +4,7 @@
 
     class Deactivate
     {  
-        public function activate(){
+        public function deactivate(){
             flush_rewrite_rules();
         }
 

@@ -10,7 +10,7 @@
             add_action( 'init', [ $this, 'custom_endpoint' ] );
     
     
-            add_filter( 'template_include', [$this, 'sam_include_custom_template'] );
+            add_filter( 'template_include', [$this, 'include_custom_template'] );
 
         } 
 
@@ -26,7 +26,7 @@
    
        }        
 
-        public function sam_include_custom_template( $template ) {
+        public function include_custom_template( $template ) {
             global $wp_query;
     
     

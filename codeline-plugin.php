@@ -24,7 +24,7 @@
   * This code activate codeline plugin
   */
  function activate_codeline_plugin() {
-    Inc\Base\Activate::activate();
+    Samsoft\Base\Activate::activate();
  }
 
  register_activation_hook( __FILE__, 'activate_codeline_plugin' );
@@ -34,7 +34,7 @@
   * This code activate codeline plugine
   */
  function deactivate_codeline_plugin() {
-    Inc\Base\Deactivate::deactivate();
+   Samsoft\Base\Deactivate::deactivate();
 }
 
 register_deactivation_hook( __FILE__, 'deactivate_codeline_plugin' );
@@ -44,5 +44,5 @@ register_deactivation_hook( __FILE__, 'deactivate_codeline_plugin' );
  * Initialize
  */
  if( class_exists( 'Samsoft\\Init' ) ){
-    Inc\Init::register_services();
+    Samsoft\Init::register_services();
  }

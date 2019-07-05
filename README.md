@@ -2,6 +2,11 @@
 
 https://app.codeline.io/#/projects/2068/tasks/22108
 
+## Booking
+<div align="center">
+    <img src="assets/Capture.PNG">
+</div>
+
 ## Installation for codeline hotel plugin
 1. Use git clone into wordpress plugin directory
 2. Go to your wordpress, login and click on Plugin menu

@@ -2,6 +2,8 @@
     //include external header
     include_once('header.php');
 
+    include_once('includes/search_bar.php');
+
     // require_once( 'wp-load.php' );
 
     // //get list of available rooms
@@ -57,7 +59,15 @@
                                     </tr>                                                                                   
                                 </table>                                
                                 </div>
-                                <button tag="button" class="btn btn-primary btn-block" >More Info</button>
+
+                                <form method="GET">
+                                    <input name="start_date" class="form-control" type="hidden" value="<?php echo $queryParams['start_date'] ?>">
+                                    <input name="end_date" class="form-control" type="hidden" value="<?php echo $queryParams['end_date'] ?>">
+                                    <input name="room_type" class="form-control" type="hidden" value="<?php echo $queryParams['type'] ?>">
+                                    <input name="rooms" class="form-control" type="hidden" value="<?php echo $room->id ?>">
+                                    <button tag="button" type="submit" class="btn btn-danger btn-block" >Book Now</button>
+                                </form>
+                                
                             </div>            
                             
                         </div>

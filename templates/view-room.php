@@ -27,7 +27,54 @@
         'total'         =>  $room->type->cost->price * $dayDiff->days,
         'days'          =>  $dayDiff->days
     ]; 
-    // var_dump($params);die;
+    
+    if(isset($_REQUEST['first_name']) && 
+        isset($_REQUEST['last_name']) && 
+        isset($_REQUEST['phone']) && 
+        isset($_REQUEST['email'])){
+
+            $firstname  = $_REQUEST['first_name'];
+            $lastname   = $_REQUEST['last_name'];
+            $phone      = $_REQUEST['phone'];
+            $email      = $_REQUEST['email'];
+            $captcha    = $_REQUEST['g-recaptcha-response'];
+            $secretKey  = "6LcKHuESAAAAAOXJ1EC2kkoYdnjVjsr_NZiLu0y_";
+
+            $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+            $response = file_get_contents($url);
+            $responseKeys = json_decode($response,true);
+
+            // var_dump($responseKeys);
+            if($responseKeys["success"]){
+
+                $response = wp_remote_post(CL_BASE_API_URL."/book-room", [
+                    'method'    =>  'POST',
+                    'headers'   =>  ['Content-Type' => 'application/json'],
+                    'body' => [
+                        'room_id'       =>  $room->id,
+                        'start_date'    =>  $params['start_date'],
+                        'end_date'      =>  $params['end_date'],
+                        'total_price'   =>  $params['total'],
+                        'total_night'   =>  $params['days'],
+                        'first_name'    =>  $firstname,
+                        'last_name'     =>  $lastname,
+                        'phone'         =>  $phone,
+                        'email'         =>  $email
+                    ]
+                ]);
+
+                if ( is_wp_error( $response ) ) {
+                    $error_message = $response->get_error_message();
+                    var_dump($error_message);die;
+                }else{
+                    echo 'Response:<pre>';
+                    print_r( $response );
+                    echo '</pre>';
+                    die;
+                }                
+
+            }
+        }
 ?>
 
 
@@ -45,28 +92,34 @@
             - Protect form submission with Google ReCaptcha
             -->
 
-            <form action="" method="POST">
+            <form action="<?php echo $_SERVER['PHP_SELF']."/rooms" ?>" method="GET">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                        <label for="first_name">First name</label>
+                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="" required="">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                        <label for="last_name">Last name</label>
+                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="" required="">
                     </div>
                 </div> 
                 <div class="mb-3">
-                    <label for="address">Phone Number</label>
-                    <input type="text" class="form-control" id="address" placeholder="Phone number" required="">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone number" required="">
                 </div> 
                 <div class="mb-3">
                     <label for="address">Email Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="Email Address" required="">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required="">
                 </div>
                 <div class="g-recaptcha" data-sitekey="6LcKHuESAAAAAAl5AuZee9WPM61ozD4DYTtBsvPC"></div>
                 <hr class="mb-4">
-                <button class="btn btn-danger btn-block" type="submit">Continue to checkout</button>
+
+                <input name="start_date" class="form-control" type="hidden" value="<?php echo $params['start_date'] ?>">
+                <input name="end_date" class="form-control" type="hidden" value="<?php echo $params['end_date'] ?>">
+                <input name="room_type" class="form-control" type="hidden" value="<?php echo $params['room_type'] ?>">
+                <input name="rooms" class="form-control" type="hidden" value="<?php echo $room->id ?>">
+
+                <button class="btn btn-danger btn-block" type="submit">Confirm Booking</button>
             </form>
 
         </div>

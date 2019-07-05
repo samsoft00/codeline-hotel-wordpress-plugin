@@ -3,18 +3,6 @@
     include_once('header.php');
 
     include_once('includes/search_bar.php');
-
-    // require_once( 'wp-load.php' );
-
-    // //get list of available rooms
-    // $requests = wp_remote_get(CL_BASE_API_URL.'/rooms');
-
-    // if( is_wp_error( $request ) ) {
-    //     die('Unable to access remote resources');
-    // }
-
-    // $rooms = json_decode( $requests ['body'] );
-    $IMAGE_PATH = CL_BASE_IMAGE_URL;
 ?>
 
 

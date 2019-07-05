@@ -11,8 +11,9 @@
         //search begins
         //room/search?type=${this.search.type}&start_date=${this.search.start_date}&end_date=${this.search.end_date}`
 
-        $start_date = date_create($_REQUEST['start_date']);
-        $end_date = date_create($_REQUEST['end_date']);
+        $start_date     = date_create($_REQUEST['start_date']);
+        $end_date       = date_create($_REQUEST['end_date']);
+        $dayDiff        = date_diff($end_date, $start_date);
 
         $queryParams = [
             'type'          =>  $_REQUEST['room_type'],
@@ -22,6 +23,7 @@
         
         $search_requests = wp_remote_get(CL_BASE_API_URL.'/rooms/search?'.http_build_query($queryParams));
         $rooms = json_decode( $search_requests['body'] );
+        $numberOfDays = $dayDiff->days;
     }
 
 ?>
@@ -52,7 +54,11 @@
         </div>
   </div>
 </nav>
-
+    <style>
+        .table td, .table th {
+            padding: .30rem;
+        }    
+    </style>
     <main role="main">
 
         <!-- Main jumbotron for a primary marketing message or call to action -->

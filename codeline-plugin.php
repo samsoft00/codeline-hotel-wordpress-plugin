@@ -20,6 +20,9 @@
 
  if ( ! defined( 'CL_PLUGIN_DIR' ) ) { define( 'CL_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); }
  if ( ! defined( 'CL_PLUGIN_URI' ) ) { define( 'CL_PLUGIN_URI', plugin_dir_url( __FILE__ ) ); }
+ if ( ! defined( 'CL_BASE_API_URL' ) ) { define( 'CL_BASE_API_URL', "http://127.0.0.1:8000/api" ); }
+ if ( ! defined( 'CL_BASE_IMAGE_URL' ) ) { define( 'CL_BASE_IMAGE_URL', "http://127.0.0.1:8000/api/rooms/images/" ); }
+
 
  class CodelinePlugin
  {

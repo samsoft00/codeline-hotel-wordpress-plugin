@@ -38,7 +38,7 @@
             $phone      = $_REQUEST['phone'];
             $email      = $_REQUEST['email'];
             $captcha    = $_REQUEST['g-recaptcha-response'];
-            $secretKey  = "6LcKHuESAAAAAOXJ1EC2kkoYdnjVjsr_NZiLu0y_";
+            $secretKey  = "";
 
             $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
             $response = file_get_contents($url);
@@ -111,7 +111,7 @@
                     <label for="address">Email Address</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required="">
                 </div>
-                <div class="g-recaptcha" data-sitekey="6LcKHuESAAAAAAl5AuZee9WPM61ozD4DYTtBsvPC"></div>
+                <div class="g-recaptcha" data-sitekey=""></div>
                 <hr class="mb-4">
 
                 <input name="start_date" class="form-control" type="hidden" value="<?php echo $params['start_date'] ?>">

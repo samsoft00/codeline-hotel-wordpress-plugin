@@ -10,6 +10,7 @@
  * Version: 1.0.0
  * Author: Oyewole Samuel "Samsoft"
  * Author URI: http://oyewoleabayomi.com
+ * Email : oyewoleabayomi@gmail.com
  * License: GPLv2
  * Text Domain: Codeline Hotel Management Plugin
  */

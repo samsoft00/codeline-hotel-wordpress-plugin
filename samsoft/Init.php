@@ -10,7 +10,6 @@ final class Init
          * Store all class inside array */   
         public static function get_service(){
             return [
-                //base class
                 Enqueue::class
             ];
         }
